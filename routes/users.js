@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express.Router();
-let student = [{
+let students = [{
         "id": 1,
         "name": "Batman"
     },
@@ -16,17 +16,17 @@ let student = [{
 
 //get all students
 app.get('/', (req, res) => {
-    res.json({ data: student, error: null })
+    res.json({ data: students, error: null })
 });
 //create a new student
 app.post('/', (req, res) => {
-    let id = student.length + 1;
+    let id = students.length + 1;
     let name = req.body.name;
     if (!name)
         return res.json({ error: "enter the name" });
     else {
-        student.push({ id, name });
+        students.push({ id, name });
         return res.json({ success: true })
     }
 })
-module.exports = app;
+module.exports = { app, students };

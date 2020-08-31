@@ -1,40 +1,41 @@
 let express = require('express');
 let app = express.Router();
+let { students } = require('./users');
 const courses = [{
-        "id": 1,
-        "name": "maths",
-        "description": "this is a maths course",
-        "enrolledstudents": [],
-        "availableslots": 10
-    },
-    {
-        "id": 2,
-        "name": "english",
-        "description": "this is a english course",
-        "enrolledstudents": [],
-        "availableslots": 10
-    },
-    {
-        "id": 3,
-        "name": "spanish",
-        "description": "this is a spanish course",
-        "enrolledstudents": [],
-        "availableslots": 10
-    }
-]
-let students = [{
             "id": 1,
-            "name": "Batman"
+            "name": "maths",
+            "description": "this is a maths course",
+            "enrolledstudents": [],
+            "availableslots": 10
         },
         {
             "id": 2,
-            "name": "Joker"
+            "name": "english",
+            "description": "this is a english course",
+            "enrolledstudents": [],
+            "availableslots": 10
         },
         {
             "id": 3,
-            "name": "Shepherd"
+            "name": "spanish",
+            "description": "this is a spanish course",
+            "enrolledstudents": [],
+            "availableslots": 10
         }
     ]
+    // let students = [{
+    //             "id": 1,
+    //             "name": "Batman"
+    //         },
+    //         {
+    //             "id": 2,
+    //             "name": "Joker"
+    //         },
+    //         {
+    //             "id": 3,
+    //             "name": "Shepherd"
+    //         }
+    //     ]
     //get all courses
 app.get('/', (req, res) => {
         res.json({
@@ -72,6 +73,7 @@ app.post('/', (req, res) => {
 //enroll a student if slots are available
 app.post('/:id/enroll', (req, res) => {
         let id = req.params.id;
+        console.log(students)
         let course;
         for (let i = 0; i < courses.length; i++) {
             if (courses[i].id == id) {

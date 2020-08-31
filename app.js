@@ -1,13 +1,14 @@
 let express = require('express');
-let app = express();
+let apps = express();
 let courses = require('./routes/courses');
-let users = require('./routes/users');
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+let { app: users } = require('./routes/users');
+// const users = require('./routes/users');
+apps.use(express.json());
+apps.use(express.urlencoded({ extended: false }));
 
-app.use('/api/courses', courses);
-app.use('/api/students', users);
-app.listen(3000, (err) => {
+apps.use('/api/courses', courses);
+apps.use('/api/students', users);
+apps.listen(3000, (err) => {
     if (err)
         console.log(err);
     else console.log("server started successfully")
